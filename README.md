@@ -7,10 +7,10 @@ Projeto voltado para criação de um sistema para cadastro e gerenciamento de ev
 
 ## Features
 
-* Adição de eventos no sistema
-* Gerenciamento de eventos no sistema
-* Gerenciamento de cadastro de usuários
-* Emissão de certificados automáticos
+* Adição de eventos no sistema.
+* Gerenciamento de eventos no sistema.
+* Gerenciamento de cadastro de usuários.
+* Emissão de certificados automáticos.
 
 ## Links
 
