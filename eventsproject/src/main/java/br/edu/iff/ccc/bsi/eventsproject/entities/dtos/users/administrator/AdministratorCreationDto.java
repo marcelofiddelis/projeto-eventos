@@ -4,8 +4,10 @@ import java.util.Date;
 
 public record AdministratorCreationDto(
     String name, 
-    String password, 
+    String password,
+    String email, 
     Date registerDate, 
-    String acessLevel) {
+    String acessLevel,
+    String company) {
 
 }

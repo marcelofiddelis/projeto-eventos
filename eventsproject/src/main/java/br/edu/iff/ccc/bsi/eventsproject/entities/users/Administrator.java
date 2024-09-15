@@ -23,7 +23,7 @@ public class Administrator extends User {
 
     @NotNull
     @Size(min = 1, max = 50)
-    private String accessLevel;
+    private String company;
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Event> events;
@@ -34,6 +34,8 @@ public class Administrator extends User {
         this.setPassword(dto.password());
         this.setRegisterDate(dto.registerDate());
         this.setAccessLevel(dto.acessLevel());
+        this.setCompany(dto.company());
+        this.setEmail(dto.email());
     }
 
 }

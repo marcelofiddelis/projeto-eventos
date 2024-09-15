@@ -13,6 +13,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -35,9 +36,18 @@ public abstract class User implements Serializable {
     private String name;
 
     @NotNull
+    @Email
+    private String email;
+
+    @NotNull
     @Size(min = 6, max = 100)
     private String password;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date registerDate;
+
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String accessLevel;
 }
