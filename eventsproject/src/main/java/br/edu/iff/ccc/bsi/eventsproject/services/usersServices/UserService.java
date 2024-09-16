@@ -10,7 +10,7 @@ import br.edu.iff.ccc.bsi.eventsproject.entities.users.User;
  * 
  */
 
-public interface UserService <I,D,O extends User>{
+public interface UserService <I,D,U,O extends User>{
     /**
      * 
      * @param userDto
@@ -22,18 +22,19 @@ public interface UserService <I,D,O extends User>{
      * @param id
      * @return User pelo id
      */
-    O getUser (I id);
+    O getUser (I id) throws Exception;
     /**
      * 
      * @param id
      * @param updateDto
      * @return Usuário atualizado pelos parâmetros
+     * @throws Exception 
      */
-    O updateUser(I id, D updateDto);
+    O updateUser(I id, U updateDto) throws Exception;
     /**
      * 
      * @param id
      * @return Usuário deletado pelo id
      */
-    O deleteUser(I id);
+    String deleteUser(I id);
 }

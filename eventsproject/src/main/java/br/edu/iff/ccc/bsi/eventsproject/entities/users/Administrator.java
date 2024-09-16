@@ -1,5 +1,6 @@
 package br.edu.iff.ccc.bsi.eventsproject.entities.users;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
@@ -36,6 +37,7 @@ public class Administrator extends User {
         this.setAccessLevel(dto.acessLevel());
         this.setCompany(dto.company());
         this.setEmail(dto.email());
+        
     }
 
 }
