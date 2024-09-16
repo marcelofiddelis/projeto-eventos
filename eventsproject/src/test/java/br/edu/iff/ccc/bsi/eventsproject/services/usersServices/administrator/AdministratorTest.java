@@ -20,13 +20,13 @@ import br.edu.iff.ccc.bsi.eventsproject.entities.dtos.users.administrator.Admini
 import br.edu.iff.ccc.bsi.eventsproject.entities.dtos.users.administrator.AdministratorUpdateDto;
 import br.edu.iff.ccc.bsi.eventsproject.entities.users.Administrator;
 import br.edu.iff.ccc.bsi.eventsproject.repositories.usersRepository.AdministratorRepository;
-import br.edu.iff.ccc.bsi.eventsproject.services.usersServices.UserServiceTeste;
+import br.edu.iff.ccc.bsi.eventsproject.services.usersServices.UserServiceTest;
 import br.edu.iff.ccc.bsi.eventsproject.services.usersServices.administratorServices.AdministratorService;
 
 @ExtendWith(MockitoExtension.class)
 @ContextConfiguration(classes = AdministratorTestConfig.class)
 @TestInstance(Lifecycle.PER_CLASS)
-public class AdministratorTest implements UserServiceTeste {
+public class AdministratorTest implements UserServiceTest {
 
     @Mock
     private AdministratorRepository administratorRepository;
@@ -35,7 +35,7 @@ public class AdministratorTest implements UserServiceTeste {
     private AdministratorService administratorService;
 
     private AdministratorCreationDto dto;
-    private Administrator admin;
+    private Administrator user;
 
     @BeforeEach
     public void setup() {
@@ -46,38 +46,38 @@ public class AdministratorTest implements UserServiceTeste {
                 new java.util.Date(),
                 "admin",
                 "IFF");
-        admin = new Administrator(dto);
+        user = new Administrator(dto);
     }
 
     @Override
     @Test
     public void addUser_ShouldAddUser() {
 
-        Mockito.when(administratorRepository.save(admin)).thenReturn(admin);
+        Mockito.when(administratorRepository.save(user)).thenReturn(user);
         Administrator adminCreated = administratorService.addUser(dto);
         Assertions.assertNotNull(adminCreated);
-        Assertions.assertEquals(admin.getCompany(), adminCreated.getCompany());
-        Mockito.verify(administratorRepository).save(admin);
+        Assertions.assertEquals(user.getCompany(), adminCreated.getCompany());
+        Mockito.verify(administratorRepository).save(user);
     }
 
     @Override
     @Test
     public void getUserById_ShouldReturnUserById() throws Exception {
-        Mockito.when(administratorRepository.findById(1L)).thenReturn(Optional.of(admin));
+        Mockito.when(administratorRepository.findById(1L)).thenReturn(Optional.of(user));
         Administrator adminFound = administratorService.getUser(1L);
         Assertions.assertNotNull(adminFound);
-        Assertions.assertEquals(admin, adminFound);
+        Assertions.assertEquals(user, adminFound);
     }
 
     @Override
     @Test
     public void updateUser_ShouldUpdateUserById() throws Exception {
-        Mockito.when(administratorRepository.findById(1L)).thenReturn(Optional.of(admin));
-        Mockito.when(administratorRepository.save(admin)).thenReturn(admin);
+        Mockito.when(administratorRepository.findById(1L)).thenReturn(Optional.of(user));
+        Mockito.when(administratorRepository.save(user)).thenReturn(user);
         AdministratorUpdateDto updateDto = new AdministratorUpdateDto("outroTeste@gmail.com", null);
         Administrator adminUpdated = administratorService.updateUser(1L, updateDto);
         Assertions.assertEquals("outroTeste@gmail.com", adminUpdated.getEmail());
-        Mockito.verify(administratorRepository).save(admin);
+        Mockito.verify(administratorRepository).save(user);
     }
 
     @Override
