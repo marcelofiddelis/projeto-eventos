@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.edu.iff.ccc.bsi.eventsproject.entities.certificate.Certificate;
+import br.edu.iff.ccc.bsi.eventsproject.entities.dtos.event.EventCreationDto;
 import br.edu.iff.ccc.bsi.eventsproject.entities.register.Registration;
 import br.edu.iff.ccc.bsi.eventsproject.entities.users.Administrator;
 import jakarta.persistence.CascadeType;
@@ -70,4 +71,15 @@ public class Event implements Serializable {
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Certificate> certificates;
+
+    public Event(EventCreationDto dto){
+        this.setCreator(dto.creator());
+        this.setName(dto.name());
+        this.setDescription(dto.description());
+        this.setStartDate(dto.startDate());
+        this.setEndDate(dto.endDate());
+        this.setPlace(dto.place());
+        this.setCapacity(dto.capacity());
+        this.setType(dto.type());
+    }
 }

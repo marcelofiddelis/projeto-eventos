@@ -4,6 +4,7 @@ package br.edu.iff.ccc.bsi.eventsproject.entities.users;
 import java.util.List;
 
 import br.edu.iff.ccc.bsi.eventsproject.entities.certificate.Certificate;
+import br.edu.iff.ccc.bsi.eventsproject.entities.dtos.users.common.CommonCreationDto;
 import br.edu.iff.ccc.bsi.eventsproject.entities.register.Registration;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
@@ -34,4 +35,14 @@ public class CommonUser extends User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Certificate> certificates;
+
+    public CommonUser (CommonCreationDto dto){
+        this.setName(dto.name());
+        this.setPassword(dto.password());
+        this.setRegisterDate(dto.registerDate());
+        this.setAccessLevel(dto.accessLevel());
+        this.setCpf(dto.cpf());
+        this.setPhoneNumber(dto.phoneNumber());
+        this.setEmail(dto.email());
+    }
 }
