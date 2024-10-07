@@ -1,6 +1,9 @@
 package br.edu.iff.ccc.bsi.eventsproject.controller.apirest.userscontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +32,12 @@ public class CommonController {
         @ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content)
     })
     @PostMapping
-    public ResponseEntity<CommonUser> addUser(@RequestBody CommonCreationDto userDto) {
+    public ResponseEntity<EntityModel<CommonUser>> addUser(@RequestBody CommonCreationDto userDto) {
         CommonUser createdUser = commonService.addUser(userDto);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        EntityModel<CommonUser> resource = EntityModel.of(createdUser);
+        Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CommonController.class).getUser(createdUser.getId())).withSelfRel();
+        resource.add(selfLink);
+        return new ResponseEntity<>(resource, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Busca um usuário comum por ID")
@@ -41,10 +47,13 @@ public class CommonController {
         @ApiResponse(responseCode = "404", description = "Usuário não encontrado", content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<CommonUser> getUser(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<CommonUser>> getUser(@PathVariable Long id) {
         try {
             CommonUser user = commonService.getUser(id);
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            EntityModel<CommonUser> resource = EntityModel.of(user);
+            Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CommonController.class).getUser(id)).withSelfRel();
+            resource.add(selfLink);
+            return new ResponseEntity<>(resource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -57,10 +66,13 @@ public class CommonController {
         @ApiResponse(responseCode = "404", description = "Usuário não encontrado", content = @Content)
     })
     @PutMapping("/{id}")
-    public ResponseEntity<CommonUser> updateUser(@PathVariable Long id, @RequestBody CommonUpdateDto updateDto) {
+    public ResponseEntity<EntityModel<CommonUser>> updateUser(@PathVariable Long id, @RequestBody CommonUpdateDto updateDto) {
         try {
             CommonUser updatedUser = commonService.updateUser(id, updateDto);
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+            EntityModel<CommonUser> resource = EntityModel.of(updatedUser);
+            Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CommonController.class).getUser(id)).withSelfRel();
+            resource.add(selfLink);
+            return new ResponseEntity<>(resource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }

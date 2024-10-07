@@ -1,6 +1,8 @@
 package br.edu.iff.ccc.bsi.eventsproject.services.eventService;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,11 @@ public class EventService {
 
     public Event getEvent(Long id) throws Exception{
         return eventRepository.findById(id).orElseThrow(() -> new Exception("Evento não encontrado"));
+    }
+
+
+    public List<Event> getAllEvents() {
+        return eventRepository.findAll(); // Retorna a lista de todos os eventos
     }
 
     public Event updateEvent(Long id, EventUpdateDto dto) throws Exception{

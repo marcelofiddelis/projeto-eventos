@@ -2,6 +2,9 @@ package br.edu.iff.ccc.bsi.eventsproject.controller.apirest.userscontroller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +33,12 @@ public class AdministratorController {
         @ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content)
     })
     @PostMapping
-    public ResponseEntity<Administrator> addUser(@RequestBody AdministratorCreationDto userDto) {
+    public ResponseEntity<EntityModel<Administrator>> addUser(@RequestBody AdministratorCreationDto userDto) {
         Administrator createdAdministrator = administratorService.addUser(userDto);
-        return new ResponseEntity<>(createdAdministrator, HttpStatus.CREATED);
+        EntityModel<Administrator> resource = EntityModel.of(createdAdministrator);
+        Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AdministratorController.class).getUser(createdAdministrator.getId())).withSelfRel();
+        resource.add(selfLink);
+        return new ResponseEntity<>(resource, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Busca um administrador por ID")
@@ -42,10 +48,13 @@ public class AdministratorController {
         @ApiResponse(responseCode = "404", description = "Administrador não encontrado", content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Administrator> getUser(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<Administrator>> getUser(@PathVariable Long id) {
         try {
             Administrator administrator = administratorService.getUser(id);
-            return new ResponseEntity<>(administrator, HttpStatus.OK);
+            EntityModel<Administrator> resource = EntityModel.of(administrator);
+            Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AdministratorController.class).getUser(id)).withSelfRel();
+            resource.add(selfLink);
+            return new ResponseEntity<>(resource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -58,10 +67,13 @@ public class AdministratorController {
         @ApiResponse(responseCode = "404", description = "Administrador não encontrado", content = @Content)
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Administrator> updateUser(@PathVariable Long id, @RequestBody AdministratorUpdateDto updateDto) {
+    public ResponseEntity<EntityModel<Administrator>> updateUser(@PathVariable Long id, @RequestBody AdministratorUpdateDto updateDto) {
         try {
             Administrator updatedAdministrator = administratorService.updateUser(id, updateDto);
-            return new ResponseEntity<>(updatedAdministrator, HttpStatus.OK);
+            EntityModel<Administrator> resource = EntityModel.of(updatedAdministrator);
+            Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AdministratorController.class).getUser(id)).withSelfRel();
+            resource.add(selfLink);
+            return new ResponseEntity<>(resource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
