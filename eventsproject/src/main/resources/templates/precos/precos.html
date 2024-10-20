@@ -4,6 +4,8 @@
 <body >
     <header th:replace="~{fragmentos/header/navbar.html :: header}"></header>
     <h1 th:text="${message}"></h1>
-    <script th:replace="fragmentos/conf/configuracoes.html :: scriptconf"></script>
+    <footer th:replace="~{fragmentos/footer/footer.html :: footer}"></footer>
+    <script th:replace="~{fragmentos/conf/configuracoes.html :: scriptconf}"></script>
+    
 </body>
 </html>
