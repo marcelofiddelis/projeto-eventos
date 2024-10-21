@@ -1,10 +1,7 @@
 package br.edu.iff.ccc.bsi.eventsproject.services.usersServices.administratorServices;
 
-import java.util.Optional;
-
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,10 +17,12 @@ public class AdministratorService implements UserService<Long,AdministratorCreat
     @Autowired
     private AdministratorRepository administratorRepository;
 
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Override
     public Administrator addUser(AdministratorCreationDto userDto) {
         Administrator administrator = new Administrator(userDto);
-    
+        administrator.setPassword(passwordEncoder.encode(userDto.password())); // Criptografa a senha
         return  administratorRepository.save(administrator);
     }
 

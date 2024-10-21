@@ -1,0 +1,28 @@
+.background-section {
+    background-image: url('/assets/homepagebg.png'); /* URL da sua imagem */
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    height: 100vh; /* Altura de 100% da viewport */
+    color: white; /* Torna o texto branco para contraste */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.carousel-img {
+    max-height: 360px;  
+    width: auto;        
+    object-fit: cover;  
+}
+
+.btn-custom {
+    background-color: #6f42c1;
+    color:aliceblue;
+}
+
+.btn-custom:hover {
+    background-color: aliceblue;
+    color:#6f42c1;
+}

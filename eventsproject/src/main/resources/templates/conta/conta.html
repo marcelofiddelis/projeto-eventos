@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/conf/configuracoes.html :: headconf}"></head>
+<body>
+    <header th:replace="~{fragmentos/header/navbarLogged.html :: header}"></header>
+    <link rel="stylesheet" href="/css/contaStyle.css">
+
+    <div class="container perfil-container">
+        <div class="profile-info">
+            <i class="fas fa-user user-icon"></i>
+            <h2 th:text="${user.name}">Nome do Usuário</h2>
+            <p>Email: <span th:text="${user.email}">email@example.com</span></p>
+            <p>Telefone: <span th:text="${user.phoneNumber}">Número de Telefone</span></p>
+            <p>CPF: <span th:text="${user.cpf}">Número do CPF</span></p>
+        </div>
+
+        <button class="btn btn-primary" onclick="toggleEdit()">Alterar Senha/Email</button>
+        
+        <div class="edit-box" id="editBox" style="display: none;">
+            <h3>Alterar Senha ou Email</h3>
+            <form action="#" th:action="@{/perfil/alterar}" method="post">
+                <div class="form-group">
+                    <label for="newEmail">Novo Email:</label>
+                    <input type="email" id="newEmail" name="newEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nova Senha:</label>
+                    <input type="password" id="newPassword" name="newPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <button type="button" class="btn btn-secondary" onclick="toggleEdit()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleEdit() {
+            var editBox = document.getElementById("editBox");
+            editBox.style.display = editBox.style.display === "none" ? "block" : "none";
+        }
+    </script>
+
+    <script th:replace="~{fragmentos/conf/configuracoes.html :: scriptconf}"></script>
+    <footer th:replace="~{fragmentos/footer/footer.html :: footer}"></footer>
+</body>
+</html>

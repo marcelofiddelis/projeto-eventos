@@ -8,4 +8,5 @@ import br.edu.iff.ccc.bsi.eventsproject.entities.users.CommonUser;
 @Repository
 public interface CommonUserRepository extends JpaRepository<CommonUser, Long> {
     
+    CommonUser findByCpf(String cpf);
 }
