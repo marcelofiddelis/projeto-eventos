@@ -20,5 +20,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     // Query para buscar eventos por data de início
     @Query("SELECT e FROM Event e WHERE e.startDate = :startDate")
     List<Event> findByStartDate(@Param("startDate") Date startDate);
+
 }
 

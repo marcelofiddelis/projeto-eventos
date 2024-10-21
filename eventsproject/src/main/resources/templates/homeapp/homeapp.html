@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/conf/configuracoes.html :: headconf}"></head>
+<body>
+    <header th:replace="~{fragmentos/header/navbarLogged.html :: header}"></header>
+    <link rel="stylesheet" href="/css/homeappStyle.css"> <!-- Link para o CSS -->
+
+    <div class="container">
+        <h1>Bem-vindo!</h1>
+
+        <div th:if="${username}" class="welcome-message">
+            <p>Olá, <span th:text="${username}"></span>!</p>
+        </div>
+
+        <div class="events-container">
+            <!-- Listando os eventos registrados -->
+            <div th:if="${eventos != null && !eventos.isEmpty()}" th:each="evento : ${eventos}" class="event-box">
+                <div class="event-info">
+                    <span class="event-name" th:text="${evento.name}" style="font-weight: bold;"></span>
+                    <span class="event-description" th:text="${evento.description}"></span>
+                    <span class="event-place" th:text="${evento.place}"></span>
+                    <span class="event-date" th:text="${#dates.format(evento.startDate, 'dd/MM/yyyy')}"></span>
+                    <div class="label-inscrito">Inscrito</div> <!-- Label de inscrito -->
+                </div>
+            </div>
+
+            <!-- Mensagem quando não há eventos -->
+            <div th:if="${eventos == null || eventos.isEmpty()}" class="user-content">
+                <p>Você ainda não está registrado em nenhum evento.</p>
+            </div>
+        </div>
+
+        <button th:href="@{/listarevento}" class="btn btn-secondary" style="background-color: #6f42c1;">Ver Todos os Eventos</button>
+    </div>
+
+    <script th:replace="~{fragmentos/conf/configuracoes.html :: scriptconf}"></script>
+    <footer th:replace="~{fragmentos/footer/footer.html :: footer}"></footer>
+</body>
+</html>

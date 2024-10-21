@@ -1,9 +1,6 @@
 package br.edu.iff.ccc.bsi.eventsproject.entities.users;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 
 import br.edu.iff.ccc.bsi.eventsproject.entities.dtos.users.administrator.AdministratorCreationDto;
 import br.edu.iff.ccc.bsi.eventsproject.entities.event.Event;
@@ -28,6 +25,11 @@ public class Administrator extends User {
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Event> events;
+
+    // Construtor padrão
+    public Administrator() {
+    }
+    
 
     public Administrator (AdministratorCreationDto dto) {
         //Dava para fazer com um Mapper, mas iria dar um pouco de trabalho para todas as operações
