@@ -1,0 +1,76 @@
+.container-login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilização da caixa de login */
+.login-container {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #343a40;
+    font-weight: bold;
+}
+
+/* Estilo dos inputs e ícones */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-text {
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.form-control {
+    border: 1px solid #ddd;
+    border-radius: 0 8px 8px 0;
+    padding: 10px;
+    height: 45px;
+    font-size: 16px;
+}
+
+/* Botão de login */
+.btn-login {
+    background-color: #6f42c1;
+    color: #f1f1f1;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #5a32a3;
+}
+
+/* Link "Esqueceu a senha?" */
+.forgot-password {
+    color: #6f42c1;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}

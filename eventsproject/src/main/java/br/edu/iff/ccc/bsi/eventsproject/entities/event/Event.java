@@ -72,6 +72,10 @@ public class Event implements Serializable {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Certificate> certificates;
 
+    // Construtor padrão
+    public Event() {
+    }
+
     public Event(EventCreationDto dto){
         this.setCreator(dto.creator());
         this.setName(dto.name());

@@ -36,6 +36,11 @@ public class CommonUser extends User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Certificate> certificates;
 
+    // Construtor padrão
+    public CommonUser() {
+        super();
+    }
+
     public CommonUser (CommonCreationDto dto){
         this.setName(dto.name());
         this.setPassword(dto.password());
