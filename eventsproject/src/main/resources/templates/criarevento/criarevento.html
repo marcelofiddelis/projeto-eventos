@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragmentos/conf/configuracoes.html :: headconf}"></head>
+<body>
+    <header th:replace="~{fragmentos/header/navbarLogged.html :: header}"></header>
+    <div class="container mt-5">
+        <h2>Criar Evento</h2>
+        <form th:action="@{/event/create}" th:object="${eventDto}" method="post">
+            <div class="form-group">
+                <label for="creator">Organizador</label>
+                <select class="form-control" id="creator" th:field="*{creator}">
+                    <option th:each="admin : ${administrators}" th:value="${admin}" th:text="${admin.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="name">Nome do Evento</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Nome do Evento" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                <textarea class="form-control" id="description" th:field="*{description}" rows="3" placeholder="Descrição do Evento" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="startDate">Data de Início</label>
+                <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required>
+            </div>
+            <div class="form-group">
+                <label for="endDate">Data de Fim</label>
+                <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required>
+            </div>
+            <div class="form-group">
+                <label for="place">Local</label>
+                <input type="text" class="form-control" id="place" th:field="*{place}" placeholder="Local do Evento" required>
+            </div>
+            <div class="form-group">
+                <label for="capacity">Capacidade</label>
+                <input type="number" class="form-control" id="capacity" th:field="*{capacity}" placeholder="Capacidade Máxima" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Tipo de Evento</label>
+                <input type="text" class="form-control" id="type" th:field="*{type}" placeholder="Tipo de Evento" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Criar Evento</button>
+        </form>
+    </div>
+    <script th:replace="~{fragmentos/conf/configuracoes.html :: scriptconf}"></script>
+    <footer th:replace="~{fragmentos/footer/footer.html :: footer}"></footer>
+</body>
+</html>
