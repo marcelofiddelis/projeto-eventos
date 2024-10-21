@@ -1,5 +1,7 @@
 package br.edu.iff.ccc.bsi.eventsproject.services.usersServices.administratorServices;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,12 @@ public class AdministratorService implements UserService<Long,AdministratorCreat
         admToBeUpdated.setCompany(updateDto.company());
         admToBeUpdated.setEmail(updateDto.email());
         return administratorRepository.save(admToBeUpdated);
+    }
+
+    
+    @Transactional
+    public List<Administrator> getAdministrators(){
+        return administratorRepository.findAll();
     }
 
     @Override
