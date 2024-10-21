@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragmentos/conf/configuracoes.html :: headconf}"></head>
+  <body>
+    <header th:replace="~{fragmentos/header/navbar.html :: header}"></header>
+    <section class="background-section">
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row px-2">
+          <h3 class="text-wrap text-start w-25 align-self-center">
+            <strong>Eventos</strong> é um serviço de criação e gerenciamento de
+            eventos de forma personalizada, oferecendo soluções que atendem às
+            necessidades específicas de cada cliente.
+          </h3>
+
+          <div class="w-75">
+            <div
+              id="carouselExampleAutoplaying"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+              </div>
+
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="assets/event1.jpg"
+                    class="d-block w-100 carousel-img"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h2>Crie eventos</h2>
+                    <p>Crie eventos de forma rápida e prática.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="assets/event2.jpg"
+                    class="d-block w-100 carousel-img"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h2>Organize eventos</h2>
+                    <p>Organize eventos de forma customizada.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="assets/event3.jpg"
+                    class="d-block w-100 carousel-img"
+                    alt="..."
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-group px-2 pt-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nossas qualidades</h5>
+              <p class="card-text">
+                Com nosso aplicativo de eventos,
+                você pode gerenciar cada detalhe de forma centralizada,
+                desde a criação do evento até a divulgação
+              </p>
+              
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Não tenha imprevistos</h5>
+              <p class="card-text">
+                Seja para conferências, shows, 
+                feiras ou eventos corporativos,
+                 nosso aplicativo é a solução completa para garantir que tudo ocorra sem imprevistos
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Plataforma universal</h5>
+              <p class="card-text">
+                Nossa plataforma é acessível em qualquer dispositivo,
+                 permitindo que você organize e acompanhe tudo de forma prática e segura,
+                  onde quer que esteja.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer th:replace="~{fragmentos/footer/footer.html :: footer}"></footer>
+    <script
+      th:replace="~{fragmentos/conf/configuracoes.html :: scriptconf}"
+    ></script>
+  </body>
+</html>
